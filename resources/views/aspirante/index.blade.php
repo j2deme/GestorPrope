@@ -27,47 +27,45 @@
                   <thead>
                     <tr>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
-                        No</th>
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
+                      </th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Ficha</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Nombre</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         CURP</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Carrera</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Evaluado</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Puntaje</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Fecha Evaluacion</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Fecha Seleccion</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Fecha Acceso</th>
                       <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
-                        Periodo</th>
-                      <th scope="col"
-                        class="px-3 py-3 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase">
+                        class="px-3 py-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
+                        <x-heroicon-o-cog-6-tooth class="w-5 h-5 m-2" />
                       </th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($aspirantes as $aspirante)
                     <tr class="even:bg-gray-50">
-                      <td class="py-4 pl-4 pr-3 text-sm font-semibold text-gray-900 whitespace-nowrap">
+                      <td class="py-4 pl-4 pr-3 text-sm font-semibold text-center text-gray-900 whitespace-nowrap">
                         {{ ++$i }}</td>
                       <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{
                         $aspirante->ficha }}</td>
@@ -80,7 +78,7 @@
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                         {{ $aspirante->evaluado ? 'Si' : 'No' }}
                       </td>
-                      <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{
+                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $aspirante->puntaje }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                         {{ $aspirante->fecha_evaluacion == null ? 'NA' :
@@ -92,8 +90,6 @@
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $aspirante->fecha_acceso == null ? 'NA' :
                         $aspirante->fecha_acceso->format('d/m/Y') }}</td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
-                        $aspirante->periodo }}</td>
                       <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap">
                         <form action="{{ route('aspirantes.destroy', $aspirante->id) }}" method="POST"
                           class="flex items-center">
