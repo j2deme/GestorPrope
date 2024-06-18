@@ -17,6 +17,24 @@
 </head>
 
 <body class="font-sans antialiased text-gray-900">
+    <!-- Login link on the top left corner -->
+    <div class="absolute top-0 right-0 p-4">
+        @if (Route::has('login'))
+        <nav class="flex justify-end flex-1 -mx-3">
+            @auth
+            <a href="{{ url('/dashboard') }}"
+                class="px-3 py-2 text-black transition rounded-md ring-1 ring-transparent hover:text-black/70 focus:outline-none focus-visible:ring-sky-800 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                {{ __('Dashboard') }}
+            </a>
+            @else
+            <a href="{{ route('login') }}"
+                class="px-3 py-2 text-black transition rounded-md ring-1 ring-transparent hover:text-black/70 focus:outline-none focus-visible:ring-sky-800 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                {{ __('Log in') }}
+            </a>
+            @endauth
+        </nav>
+        @endif
+    </div>
     <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0">
         <div>
             {{-- <a href="/">
@@ -26,7 +44,7 @@
             <header>
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <h1 class="text-xl font-semibold leading-tight text-center text-gray-800">
-                        Propedéutico {{ date('Y') }}
+                        <a href="{{ route('home') }}">Propedéutico {{ date('Y') }}</a>
                     </h1>
                     <h2 class="text-center">TECNM Campus Ciudad Valles</h2>
                 </div>

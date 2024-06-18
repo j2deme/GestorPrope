@@ -38,21 +38,4 @@
     </button>
   </form>
 
-  {{-- @if (Route::has('login'))
-  <nav class="flex justify-end flex-1 -mx-3">
-    @auth
-    <a href="{{ url('/dashboard') }}"
-      class="px-3 py-2 text-black transition rounded-md ring-1 ring-transparent hover:text-black/70 focus:outline-none focus-visible:ring-sky-800 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-      {{ __('Dashboard') }}
-    </a>
-    @else
-    <a href="{{ route('login') }}"
-      class="px-3 py-2 text-black transition rounded-md ring-1 ring-transparent hover:text-black/70 focus:outline-none focus-visible:ring-sky-800 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-      {{ __('Log in') }}
-    </a>
-    @endauth
-  </nav>
-  @endif
-  --}}
-
 </x-guest-layout>
