@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AspiranteController;
+use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Aspirante;
+use App\Models\Horario;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -71,5 +73,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('aspirantes', AspiranteController::class);
+Route::resource('horarios', HorarioController::class);
 
 require __DIR__ . '/auth.php';
