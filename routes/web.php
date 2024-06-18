@@ -51,8 +51,13 @@ Route::get('/cotejo-ficha/{ficha}', function (string $ficha) {
     return view('cotejo-ficha', compact('aspirante'));
 })->name('cotejo-ficha');
 
-Route::get('/seleccion-grupo', function () {
-    dump('Seleccion de grupo');
+Route::get('/seleccion-grupo/{ficha}', function (string $ficha) {
+    $aspirante = Aspirante::where('ficha', $ficha)->first();
+    $horarios  = Horario::where('periodo', date('Y'))->orderBy('hora_inicio')->get();
+    dd($horarios);
+
+
+    return view('seleccion-grupo', compact('aspirante'));
 })->name('seleccion-grupo');
 
 Route::get('/dashboard', function () {
