@@ -1,6 +1,6 @@
 services:
   web:
-    image: app-name:latest
+    image: prope:latest
     build:
       target: web
       context: .
@@ -12,6 +12,8 @@ services:
       - .:/var/www/html
     depends_on:
       - db
+    networks:
+      - app-network
   
   db:
     platform: linux/amd64
@@ -19,7 +21,7 @@ services:
     env_file:
       - .env
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
@@ -27,6 +29,26 @@ services:
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      - mysql-phpmyadmin
+      - app-network
+  
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8090:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    networks:
+      - mysql-phpmyadmin
+
+networks:
+  mysql-phpmyadmin:
+  app-network:
 
 volumes:
   dbdata:
