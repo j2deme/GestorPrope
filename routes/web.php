@@ -58,11 +58,17 @@ Route::get('/cotejo-ficha/{ficha}', function (string $ficha) {
 
 Route::get('/seleccion-grupo/{ficha}', function (string $ficha) {
     $aspirante = Aspirante::where('ficha', $ficha)->first();
-    $horarios  = Horario::where('periodo', date('Y'))->orderBy('hora_inicio')->get();
-    dd($horarios);
+    $horarios  = Horario::with('grupos')->where('periodo', date('Y'))->orderBy('hora_inicio')->get();
 
+    # Get the first group that has available space for every horario if any
+    $turnos = $horarios->map(function ($horario) {
+        return $horario->grupos->first(fn($grupo) => $grupo->cupo > $grupo->inscritos);
+    });
 
-    return view('seleccion-grupo', compact('aspirante'));
+    # Remove null values from the collection
+    $turnos = $turnos->filter();
+
+    return view('seleccion-grupo', compact('aspirante', 'turnos'));
 })->name('seleccion-grupo');
 
 Route::get('/dashboard', function () {
