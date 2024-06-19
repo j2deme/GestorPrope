@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AspiranteRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class AspiranteController extends Controller
 {
@@ -40,7 +41,7 @@ class AspiranteController extends Controller
         Aspirante::create($request->validated());
 
         return Redirect::route('aspirantes.index')
-            ->with('success', 'Aspirante created successfully.');
+            ->with('success', 'Aspirante creado exitosamente.');
     }
 
     /**
@@ -71,7 +72,7 @@ class AspiranteController extends Controller
         $aspirante->update($request->validated());
 
         return Redirect::route('aspirantes.index')
-            ->with('success', 'Aspirante updated successfully');
+            ->with('success', 'Aspirante actualizado exitosamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +80,51 @@ class AspiranteController extends Controller
         Aspirante::find($id)->delete();
 
         return Redirect::route('aspirantes.index')
-            ->with('success', 'Aspirante deleted successfully');
+            ->with('success', 'Aspirante borrado exitosamente');
+    }
+
+    public function uploadForm(): View
+    {
+        return view('aspirante.upload');
+    }
+
+    public function upload(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'fecha' => 'required|date',
+            'file' => 'required|file|mimes:csv,txt',
+        ]);
+
+        $file = $request->file('file');
+        $path = $file->storeAs('aspirantes', $file->getClientOriginalName());
+
+        $csv = array_map('str_getcsv', file(storage_path("app/$path")));
+
+        foreach ($csv as $row) {
+            # Skip the header row
+            $header = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $row[0]);
+            if (Str::lower($header) === 'ficha' || $header === '') {
+                continue;
+            }
+
+            # Find or create aspirante
+            $aspirante = Aspirante::firstOrNew([
+                'ficha' => $row[0],
+            ]);
+
+            $aspirante->nombre           = $row[1];
+            $aspirante->curp             = $row[2];
+            $aspirante->carrera          = $row[3];
+            $aspirante->evaluado         = ($row[4] == 'SI');
+            $aspirante->puntaje          = $row[5];
+            $aspirante->fecha_evaluacion = null;
+            $aspirante->fecha_acceso     = $request->fecha;
+            $aspirante->periodo          = date('Y');
+
+            $aspirante->save();
+        }
+
+        return Redirect::route('aspirantes.index')
+            ->with('success', 'Aspirantes subidos exitosamente');
     }
 }
