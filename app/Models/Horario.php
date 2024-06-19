@@ -30,5 +30,10 @@ class Horario extends Model
      */
     protected $fillable = ['hora_inicio', 'hora_fin', 'descripcion', 'periodo'];
 
+    public function grupos()
+    {
+        return $this->hasMany(\App\Models\Grupo::class, 'horario_id', 'id');
+    }
+
 
 }

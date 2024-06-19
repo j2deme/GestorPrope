@@ -34,7 +34,7 @@ class Aspirante extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['ficha', 'nombre', 'curp', 'carrera', 'evaluado', 'puntaje', 'fecha_evaluacion', 'fecha_seleccion', 'periodo', 'fecha_acceso'];
+    protected $fillable = ['ficha', 'nombre', 'curp', 'carrera', 'evaluado', 'puntaje', 'fecha_evaluacion', 'fecha_seleccion', 'periodo', 'fecha_acceso', 'grupo_id'];
 
     /**
      * The attributes that should be cast.
@@ -47,6 +47,14 @@ class Aspirante extends Model
         'fecha_seleccion' => 'datetime',
         'fecha_acceso' => 'datetime',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function grupo()
+    {
+        return $this->belongsTo(\App\Models\Grupo::class, 'grupo_id', 'id');
+    }
 
 
 }
