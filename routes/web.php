@@ -52,7 +52,8 @@ Route::get('/cotejo-ficha', fn() => redirect()->route('home'));
 
 Route::get('/cotejo-ficha/{ficha}', function (string $ficha) {
     $aspirante = Aspirante::where('ficha', $ficha)->first();
-    return view('cotejo-ficha', compact('aspirante'));
+    $grupo     = $aspirante->grupo;
+    return view('cotejo-ficha', compact('aspirante', 'grupo'));
 })->name('cotejo-ficha');
 
 Route::get('/seleccion-grupo/{ficha}', function (string $ficha) {
