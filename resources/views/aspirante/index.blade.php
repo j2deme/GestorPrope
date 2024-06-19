@@ -12,6 +12,7 @@
           <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
               <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Aspirantes') }}</h1>
+              <x-notification />
             </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
               <a type="button" href="{{ route('aspirantes.create') }}"
