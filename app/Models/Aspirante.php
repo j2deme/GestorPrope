@@ -45,7 +45,7 @@ class Aspirante extends Model
         'evaluado' => 'boolean',
         'fecha_evaluacion' => 'datetime',
         'fecha_seleccion' => 'datetime',
-        'fecha_acceso' => 'datetime',
+        'fecha_acceso' => 'date',
     ];
 
     /**
