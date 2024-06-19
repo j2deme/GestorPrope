@@ -85,6 +85,9 @@
                           <th scope="col"
                             class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                             Puntaje</th>
+                          <th scope="col"
+                            class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
+                            Acciones</th>
                         </tr>
                       </thead>
                       <tbody class="bg-white divide-y divide-gray-300">
@@ -101,6 +104,18 @@
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-center text-gray-900">{{ $aspirante?->puntaje }}</div>
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex justify-center w-full items -center">
+                              <!-- Remove aspirante from grupo -->
+                              <form action="{{ route('grupos.remove', [$grupo->id, $aspirante->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="mr-2 font-bold text-red-600 hover:text-red-900"
+                                  onclick="event.preventDefault(); confirm('¿Estás seguro de continuar?') ? this.closest('form').submit() : false;">
+                                  <x-heroicon-o-user-minus class="w-5 h-5" />
+                                </button>
+                            </div>
                           </td>
                         </tr>
                         @endforeach

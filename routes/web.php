@@ -126,5 +126,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('aspirantes', AspiranteController::class);
 Route::resource('horarios', HorarioController::class);
 Route::resource('grupos', GrupoController::class);
+Route::delete('/grupos/{grupo}/remove/{aspirante}', [GrupoController::class, 'remove'])->name('grupos.remove');
 
 require __DIR__ . '/auth.php';
