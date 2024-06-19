@@ -80,7 +80,14 @@
                       <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap text-wrap">{{
                         $aspirante->carrera }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                        {{ $aspirante->evaluado ? 'Si' : 'No' }}
+                        <div class="flex justify-center">
+                          @if ($aspirante->evaluado)
+                          <x-heroicon-o-check-circle class="w-5 h-5 text-green-500" />
+                          @else
+                          <x-heroicon-o-x-circle class="w-5 h-5 text-red-500" />
+                          @endif
+                        </div>
+                      </td>
                       </td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $aspirante->puntaje }}</td>
