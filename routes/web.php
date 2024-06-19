@@ -71,6 +71,48 @@ Route::get('/seleccion-grupo/{ficha}', function (string $ficha) {
     return view('seleccion-grupo', compact('aspirante', 'turnos'));
 })->name('seleccion-grupo');
 
+Route::get('/confirmar-turno/{ficha}/{horario}', function (string $ficha, Horario $horario) {
+    $aspirante = Aspirante::where('ficha', $ficha)->first();
+
+    if ($aspirante->grupo) {
+        //session()->flash('warning', 'Ya has seleccionado un grupo, no puedes seleccionar otro.');
+        $grupo     = $aspirante->grupo;
+        $confirmar = false;
+    } else {
+        # Get the first group that has available space for the selected horario
+        $grupo = $horario->grupos->first(fn($grupo) => $grupo->cupo > $grupo->inscritos);
+
+        $aspirante->grupo()->associate($grupo);
+        $confirmar = $aspirante->save();
+
+        if (!$confirmar) {
+            session()->flash('danger', 'Ocurrió un error inesperado, intenta de nuevo.');
+            return redirect()->route('seleccion-grupo', ['ficha' => $aspirante->ficha]);
+        } else {
+            # Update the number of inscritos in the group, and if the group is full, update the status
+            $grupo->inscritos++;
+            if ($grupo->cupo === $grupo->inscritos) {
+                $grupo->activo = false;
+            }
+            $grupo->save();
+        }
+
+        # Update the aspirante's fecha_seleccion if the group was successfully assigned
+        $aspirante->fecha_seleccion = now();
+        $aspirante->save();
+
+        session()->flash('success', "$aspirante->nombre ha sido registrado en el grupo $grupo->nombre exitosamente.");
+    }
+
+    return view('cotejo-ficha', compact('aspirante', 'grupo', 'confirmar'));
+})->name('confirmar-turno');
+
+Route::get('/revisar-turno/{ficha}', function (string $ficha) {
+    $aspirante = Aspirante::where('ficha', $ficha)->first();
+    $grupo     = $aspirante->grupo;
+    return view('cotejo-ficha', compact('aspirante', 'grupo'));
+})->name('revisar-turno');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
