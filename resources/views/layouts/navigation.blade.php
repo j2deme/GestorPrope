@@ -22,6 +22,9 @@
                     <x-nav-link :href="route('horarios.index')" :active="request()->routeIs('horarios.index')">
                         Horarios
                     </x-nav-link>
+                    <x-nav-link :href="route('grupos.index')" :active="request()->routeIs('grupos.index')">
+                        Grupos
+                    </x-nav-link>
                 </div>
             </div>
 
