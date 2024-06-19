@@ -35,7 +35,7 @@ Route::post('/cotejo-ficha', function (Request $request) {
 
             # Revisar si el aspirante ya seleccionó grupo y redirigir a la página correspondiente
             if ($aspirante->fecha_seleccion) {
-                return redirect()->route('cotejo-ficha', ['ficha' => $aspirante->ficha, 'curp' => $aspirante->curp]);
+                return redirect()->route('cotejo-ficha', ['ficha' => $aspirante->ficha]);
             } else {
                 return view('confirmar-aspirante', compact('aspirante'));
             }
