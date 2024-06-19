@@ -16,13 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('aspirantes.index')" :active="request()->routeIs('aspirantes.index')">
+                    <x-nav-link :href="route('aspirantes.index')" :active="request()->routeIs('aspirantes.*')">
                         Aspirantes
                     </x-nav-link>
-                    <x-nav-link :href="route('horarios.index')" :active="request()->routeIs('horarios.index')">
+                    <x-nav-link :href="route('horarios.index')" :active="request()->routeIs('horarios.*')">
                         Horarios
                     </x-nav-link>
-                    <x-nav-link :href="route('grupos.index')" :active="request()->routeIs('grupos.index')">
+                    <x-nav-link :href="route('grupos.index')" :active="request()->routeIs('grupos.*')">
                         Grupos
                     </x-nav-link>
                 </div>
