@@ -13,6 +13,7 @@
             <div class="sm:flex-auto">
               <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Show') }} Grupo</h1>
               <p class="mt-2 text-sm text-gray-700">Periodo {{ date('Y') }}</p>
+              <x-notification />
             </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
               <a type="button" href="{{ route('grupos.index') }}"
@@ -22,7 +23,6 @@
 
           <div class="flow-root">
             <div class="mt-8 overflow-x-auto">
-              <!-- Show nombre, cupo, inscritos, aula and horario_id in a single row -->
               <div class="inline-block min-w-full py-2 align-middle">
                 <table class="w-full divide-y divide-gray-300">
                   <thead>
