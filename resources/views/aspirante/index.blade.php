@@ -88,17 +88,25 @@
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $aspirante->puntaje }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
-                        {{ $aspirante->fecha_evaluacion == null ? 'NA' :
+                        {{ $aspirante->fecha_evaluacion == null ? '-' :
                         $aspirante->fecha_evaluacion->format('d/m/Y') }}
                       </td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
-                        $aspirante->fecha_acceso == null ? 'NA' :
+                        $aspirante->fecha_acceso == null ? '-' :
                         $aspirante->fecha_acceso->format('d/m/Y') }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
-                        $aspirante->fecha_seleccion == null ? 'NA' :
+                        $aspirante->fecha_seleccion == null ? '-' :
                         $aspirante->fecha_seleccion->format('d/m/Y') }}</td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
-                        $aspirante->grupo?->nombre }}</td>
+                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                        @if ($aspirante->grupo)
+                        <a href="{{ route('grupos.show', $aspirante->grupo->id) }}"
+                          class="font-semibold text-indigo-600 hover:text-indigo-900">
+                          {{ $aspirante->grupo->nombre }}
+                        </a>
+                        @else
+                        -
+                        @endif
+                      </td>
                       <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap">
                         <form action="{{ route('aspirantes.destroy', $aspirante->id) }}" method="POST"
                           class="flex items-center justify-center w-full">

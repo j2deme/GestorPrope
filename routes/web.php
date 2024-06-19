@@ -101,7 +101,7 @@ Route::get('/confirmar-turno/{ficha}/{horario}', function (string $ficha, Horari
         $aspirante->fecha_seleccion = now();
         $aspirante->save();
 
-        session()->flash('success', "$aspirante->nombre ha sido registrado en el grupo $grupo->nombre exitosamente.");
+        session()->now('success', "$aspirante->nombre ha sido registrado en el grupo $grupo->nombre exitosamente.");
     }
 
     return view('cotejo-ficha', compact('aspirante', 'grupo', 'confirmar'));
