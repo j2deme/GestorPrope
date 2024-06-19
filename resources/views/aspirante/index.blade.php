@@ -28,9 +28,6 @@
                     <tr>
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
-                      </th>
-                      <th scope="col"
-                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Ficha</th>
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
@@ -69,9 +66,7 @@
                   <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($aspirantes as $aspirante)
                     <tr class="even:bg-gray-50">
-                      <td class="py-4 pl-4 pr-3 text-sm font-semibold text-center text-gray-900 whitespace-nowrap">
-                        {{ ++$i }}</td>
-                      <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{
+                      <td class="py-4 pl-4 pr-3 text-sm font-semibold text-center text-gray-900 whitespace-nowrap">{{
                         $aspirante->ficha }}</td>
                       <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap text-wrap">{{
                         $aspirante->nombre }}</td>
