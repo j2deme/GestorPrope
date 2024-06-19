@@ -37,10 +37,12 @@
                         Hora Fin</th>
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
-                        Descripcion</th>
+                        Grupos</th>
                       <th scope="col"
                         class="px-3 py-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
-                        <x-heroicon-o-cog-6-tooth class="w-5 h-5 m-2" />
+                        <div class="flex items-center justify-center w-full">
+                          <x-heroicon-o-cog-6-tooth class="w-5 h-5 m-2" />
+                        </div>
                       </th>
                     </tr>
                   </thead>
@@ -54,10 +56,10 @@
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $horario->hora_fin }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
-                        $horario->descripcion ?: 'NA' }}</td>
+                        $horario->grupos->count() }}</td>
                       <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap">
                         <form action="{{ route('horarios.destroy', $horario->id) }}" method="POST"
-                          class="flex items-center">
+                          class="flex items-center justify-center w-full">
                           <a href="{{ route('horarios.show', $horario->id) }}"
                             class="mr-2 font-bold text-gray-600 hover:text-gray-900">
                             <x-heroicon-o-eye class="w-5 h-5" />
