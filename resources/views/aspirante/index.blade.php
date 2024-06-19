@@ -52,13 +52,17 @@
                         Fecha Evaluacion</th>
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
+                        Fecha Acceso</th>
+                      <th scope="col"
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Fecha Seleccion</th>
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
-                        Fecha Acceso</th>
-                      <th scope="col"
-                        class="px-3 py-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
-                        <x-heroicon-o-cog-6-tooth class="w-5 h-5 m-2" />
+                        Grupo</th>
+                      <th scope="col" class="px-3 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">
+                        <div class="flex items-center justify-center w-full">
+                          <x-heroicon-o-cog-6-tooth class="w-5 h-5 m-2" />
+                        </div>
                       </th>
                     </tr>
                   </thead>
@@ -85,14 +89,16 @@
                         $aspirante->fecha_evaluacion->format('d/m/Y') }}
                       </td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
+                        $aspirante->fecha_acceso == null ? 'NA' :
+                        $aspirante->fecha_acceso->format('d/m/Y') }}</td>
+                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $aspirante->fecha_seleccion == null ? 'NA' :
                         $aspirante->fecha_seleccion->format('d/m/Y') }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
-                        $aspirante->fecha_acceso == null ? 'NA' :
-                        $aspirante->fecha_acceso->format('d/m/Y') }}</td>
+                        $aspirante->grupo?->nombre }}</td>
                       <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap">
                         <form action="{{ route('aspirantes.destroy', $aspirante->id) }}" method="POST"
-                          class="flex items-center">
+                          class="flex items-center justify-center w-full">
                           <a href="{{ route('aspirantes.show', $aspirante->id) }}"
                             class="mr-2 font-bold text-gray-600 hover:text-gray-900">
                             <x-heroicon-o-eye class="w-5 h-5" />
