@@ -93,6 +93,7 @@ class GrupoController extends Controller
         $grupo->save();
 
         $aspirante->grupo()->dissociate();
+        $aspirante->fecha_seleccion = null;
         $aspirante->save();
 
         return Redirect::route('grupos.show', $grupo->id)
