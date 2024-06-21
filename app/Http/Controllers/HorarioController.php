@@ -71,7 +71,7 @@ class HorarioController extends Controller
         $horario->update($request->validated());
 
         return Redirect::route('horarios.index')
-            ->with('success', 'Horario actualizado exitosamente');
+            ->with('success', 'Horario actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class HorarioController extends Controller
         Horario::find($id)->delete();
 
         return Redirect::route('horarios.index')
-            ->with('success', 'Horario eliminado exitosamente');
+            ->with('success', 'Horario eliminado exitosamente.');
     }
 }

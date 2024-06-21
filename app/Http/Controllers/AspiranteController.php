@@ -41,7 +41,7 @@ class AspiranteController extends Controller
         Aspirante::create($request->validated());
 
         return Redirect::route('aspirantes.index')
-            ->with('success', 'Aspirante creado exitosamente.');
+            ->with('success', 'Aspirante registrado exitosamente.');
     }
 
     /**
@@ -72,7 +72,7 @@ class AspiranteController extends Controller
         $aspirante->update($request->validated());
 
         return Redirect::route('aspirantes.index')
-            ->with('success', 'Aspirante actualizado exitosamente');
+            ->with('success', 'Aspirante actualizado exitosamente.');
     }
 
     public function destroy($id): RedirectResponse
@@ -80,7 +80,7 @@ class AspiranteController extends Controller
         Aspirante::find($id)->delete();
 
         return Redirect::route('aspirantes.index')
-            ->with('success', 'Aspirante borrado exitosamente');
+            ->with('success', 'Aspirante eliminado exitosamente.');
     }
 
     public function uploadForm(): View
@@ -125,6 +125,6 @@ class AspiranteController extends Controller
         }
 
         return Redirect::route('aspirantes.index')
-            ->with('success', 'Aspirantes subidos exitosamente');
+            ->with('success', 'Aspirantes subidos exitosamente.');
     }
 }
