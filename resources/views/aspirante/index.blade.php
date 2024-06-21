@@ -72,13 +72,13 @@
                     <tr class="even:bg-gray-50">
                       <td class="py-4 pl-4 pr-3 text-sm font-semibold text-center text-gray-900 whitespace-nowrap">{{
                         $aspirante->ficha }}</td>
-                      <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap text-wrap">{{
+                      <td class="px-3 py-4 text-sm text-gray-600 whitespace-nowrap text-wrap">{{
                         $aspirante->nombre }}</td>
-                      <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">{{
+                      <td class="px-3 py-4 text-sm text-gray-600 whitespace-nowrap">{{
                         $aspirante->curp }}</td>
-                      <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap text-wrap">{{
+                      <td class="px-3 py-4 text-sm text-gray-600 whitespace-nowrap text-wrap">{{
                         $aspirante->carrera }}</td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                      <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap">
                         <div class="flex justify-center">
                           @if ($aspirante->evaluado)
                           <x-heroicon-o-check-circle class="w-5 h-5 text-green-500" />
@@ -88,19 +88,19 @@
                         </div>
                       </td>
                       </td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
+                      <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap">{{
                         $aspirante->puntaje }}</td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                      <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap">
                         {{ $aspirante->fecha_evaluacion == null ? '-' :
                         $aspirante->fecha_evaluacion->format('d/m/Y') }}
                       </td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
+                      <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap">{{
                         $aspirante->fecha_acceso == null ? '-' :
                         $aspirante->fecha_acceso->format('d/m/Y') }}</td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
+                      <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap">{{
                         $aspirante->fecha_seleccion == null ? '-' :
                         $aspirante->fecha_seleccion->format('d/m/Y') }}</td>
-                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                      <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap">
                         @if ($aspirante->grupo)
                         <a href="{{ route('grupos.show', $aspirante->grupo->id) }}"
                           class="font-semibold text-indigo-600 hover:text-indigo-900">
