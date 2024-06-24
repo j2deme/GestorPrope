@@ -16,6 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @bukStyles
     @bukScripts
+    <meta http-equiv="refresh" content="{{ config('session.lifetime') * 60 }}">
 </head>
 
 <body class="font-sans antialiased">
