@@ -31,6 +31,9 @@
                       </th>
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
+                        Días</th>
+                      <th scope="col"
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Hora Inicio</th>
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
@@ -51,6 +54,9 @@
                     <tr class="even:bg-gray-50">
                       <td class="py-4 pl-4 pr-3 text-sm font-semibold text-center text-gray-900 whitespace-nowrap">
                         {{ ++$i }}</td>
+                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                        {{ $horario->dias ?? '-' }}</td>
+                      </td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $horario->hora_inicio }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
