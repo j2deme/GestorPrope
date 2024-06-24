@@ -76,8 +76,8 @@
                         $aspirante->nombre }}</td>
                       <td class="px-3 py-4 text-sm text-gray-600 whitespace-nowrap">{{
                         $aspirante->curp }}</td>
-                      <td class="px-3 py-4 text-sm text-gray-600 whitespace-nowrap text-wrap">{{
-                        $aspirante->carrera }}</td>
+                      <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap text-wrap">
+                        @include('shared.siglas-carrera', ['carrera' => $aspirante->carrera])</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-600 whitespace-nowrap">
                         <div class="flex justify-center">
                           @if ($aspirante->evaluado)
