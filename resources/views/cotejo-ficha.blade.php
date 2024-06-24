@@ -27,7 +27,7 @@
             Nombre
           </th>
           <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">
-            Grupo
+            Aula
           </th>
           <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">
             Horario
@@ -43,7 +43,7 @@
             <div class="text-sm text-center text-gray-900">{{ $aspirante->nombre }}</div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
-            <div class="text-sm text-center text-gray-900">{{ $grupo?->nombre }}</div>
+            <div class="text-sm text-center text-gray-900">{{ $grupo?->aula }}</div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
             <div class="text-sm text-center text-gray-900">{{ str_pad($grupo?->horario->hora_inicio, 2, '0',
