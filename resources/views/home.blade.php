@@ -11,6 +11,8 @@
   <p class="py-2 text-justify">
     Para continuar con el proceso de registro al curso propedéutico, por favor ingresa tu número de ficha y CURP.
   </p>
+  <p class="py-2 text-justify">El periodo para la realización del curso será del 1 al 26 de julio de 2024 (lunes a
+    viernes).</p>
 
   <form class="max-w-sm mx-auto" method="post" action="{{ route('cotejo-ficha-post') }}">
     @csrf
