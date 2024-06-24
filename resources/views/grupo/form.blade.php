@@ -7,19 +7,21 @@
         <x-input-error class="mt-2" :messages="$errors->get('nombre')" />
     </div>
     <div class="flex">
-        <div class="w-1/3 pe-3">
+        <div class="w-1/2 pe-3">
             <x-input-label for="cupo" :value="__('Cupo')" />
             <x-text-input id="cupo" name="cupo" type="text" class="block w-full mt-1"
                 :value="old('cupo', $grupo?->cupo)" autocomplete="cupo" placeholder="Cupo" />
             <x-input-error class="mt-2" :messages="$errors->get('cupo')" />
         </div>
-        <div class="w-1/3 pe-3">
+        <input type="hidden" id="inscritos" name="inscritos" value="{{ $grupo?->inscritos ?? 0 }}">
+        {{--<div class="w-1/3 pe-3">
             <x-input-label for="inscritos" :value="__('Inscritos')" />
             <x-text-input id="inscritos" name="inscritos" type="text" class="block w-full mt-1"
-                :value="old('inscritos', $grupo?->inscritos)" autocomplete="inscritos" placeholder="Inscritos" />
+                :value="old('inscritos', $grupo?->inscritos ?? 0)" autocomplete="inscritos" placeholder="Inscritos"
+                readonly="readonly" />
             <x-input-error class="mt-2" :messages="$errors->get('inscritos')" />
-        </div>
-        <div class="w-1/3">
+        </div>--}}
+        <div class="w-1/2">
             <x-input-label for="aula" :value="__('Aula')" />
             <x-text-input id="aula" name="aula" type="text" class="block w-full mt-1"
                 :value="old('aula', $grupo?->aula)" autocomplete="aula" placeholder="Aula" />
