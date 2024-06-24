@@ -13,7 +13,7 @@
     De los turnos disponibles, selecciona el que más te convenga para asistir al curso propedéutico.
     </p>
     <p class="py-2 text-justify">
-      <strong>Nota:</strong> Una vez seleccionado el turno, no podrás cambiarlo.
+      <strong>Nota:</strong> Una vez seleccionado el turno, <strong>no</strong> podrás cambiarlo.
     </p>
     @forelse ($turnos as $turno)
     <div class="flex justify-center space-x-4">
