@@ -17,9 +17,18 @@ class AspiranteController extends Controller
      */
     public function index(Request $request): View
     {
-        $aspirantes = Aspirante::paginate();
+        $ficha    = $request->input('ficha');
+        $query    = Aspirante::query();
+        $filtrado = false;
 
-        return view('aspirante.index', compact('aspirantes'))
+        if ($ficha) {
+            $query->where('ficha', $ficha);
+            $filtrado = true;
+        }
+
+        $aspirantes = $query->paginate();
+
+        return view('aspirante.index', compact('aspirantes', 'filtrado', 'ficha'))
             ->with('i', ($request->input('page', 1) - 1) * $aspirantes->perPage());
     }
 

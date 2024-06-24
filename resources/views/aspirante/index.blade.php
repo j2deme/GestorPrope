@@ -15,6 +15,18 @@
               <x-notification />
             </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+              <form action="{{ route('aspirantes.index') }}" method="GET">
+                <div class="flex items-center">
+                  <input type="text" name="ficha" placeholder="Buscar aspirante por ficha"
+                    class="block w-full px-3 py-2 text-sm text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                  <button type="submit"
+                    class="px-4 py-2 ml-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <x-heroicon-c-magnifying-glass class="w-5 h-5" />
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
               <a type="button" href="{{ route('aspirantes.create') }}"
                 class="block px-3 py-2 text-sm font-semibold text-center text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Agregar
                 aspirante</a>
@@ -23,6 +35,14 @@
                 aspirantes</a>
             </div>
           </div>
+          <!-- If filtrado is true add option to remove filter -->
+          @if ($filtrado)
+          <div class="mt-4">
+            <span class="text-sm font-semibold text-gray-600">Filtrado por ficha: {{ $ficha }}</span>
+            <a href="{{ route('aspirantes.index') }}"
+              class="ml-2 text-sm font-semibold text-indigo-600 hover:text-indigo-900">Quitar filtro</a>
+          </div>
+          @endif
 
           <div class="flow-root">
             <div class="mt-8 overflow-x-auto">
