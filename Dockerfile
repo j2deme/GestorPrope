@@ -32,5 +32,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install app dependencies
 RUN composer install --no-dev
 
+RUN apt-get update && apt-get install -y \
+  software-properties-common \
+  npm
+RUN npm install npm@latest -g && \
+  npm install n -g && \
+  n latest
+
+RUN npm install && npm run build
+
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
