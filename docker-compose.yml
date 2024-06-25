@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     ports:
-      - "8000:80"
+      - "8090:80"
     volumes:
       - .:/var/www/html
     depends_on:
@@ -26,7 +26,7 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3306:3306"
+      - "8091:3306"
     volumes:
       - dbdata:/var/lib/mysql
     networks:
@@ -39,7 +39,7 @@ services:
     image: phpmyadmin
     restart: always
     ports:
-      - "8090:80"
+      - "8092:80"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
