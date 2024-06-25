@@ -35,6 +35,13 @@ class Horario extends Model
         return $this->hasMany(\App\Models\Grupo::class, 'horario_id', 'id');
     }
 
+    public function availableGroups()
+    {
+        return $this->hasMany(\App\Models\Grupo::class, 'horario_id', 'id')
+            ->whereColumn('cupo', '>', 'inscritos')
+            ->orderBy('inscritos', 'asc');
+    }
+
     # Virtual attribute "dias" as an alias for "descripcion"
     public function dias(): Attribute
     {
