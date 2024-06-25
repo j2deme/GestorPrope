@@ -36,6 +36,11 @@ class Horario extends Model
         return $this->hasMany(\App\Models\Grupo::class, 'horario_id', 'id');
     }
 
+    public function aspirantes()
+    {
+        return $this->hasManyThrough(\App\Models\Aspirante::class, \App\Models\Grupo::class, 'horario_id', 'grupo_id', 'id', 'id');
+    }
+
     public function availableGroups()
     {
         return $this->hasMany(\App\Models\Grupo::class, 'horario_id', 'id')

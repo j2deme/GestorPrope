@@ -42,6 +42,9 @@
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Grupos</th>
                       <th scope="col"
+                        class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
+                        Aspirantes</th>
+                      <th scope="col"
                         class="px-3 py-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         <div class="flex items-center justify-center w-full">
                           <x-heroicon-o-cog-6-tooth class="w-5 h-5 m-2" />
@@ -63,6 +66,8 @@
                         $horario->hora_fin }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
                         $horario->grupos->count() }}</td>
+                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
+                        $horario->aspirantes->count() }}</td>
                       <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap">
                         <form action="{{ route('horarios.destroy', $horario->id) }}" method="POST"
                           class="flex items-center justify-center w-full">
