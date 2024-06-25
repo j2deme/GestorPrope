@@ -56,7 +56,7 @@ Route::get('/cotejo-ficha/{ficha}', function (string $ficha) {
     return view('cotejo-ficha', compact('aspirante', 'grupo'));
 })->name('cotejo-ficha');
 
-Route::get('/seleccion-grupo/{ficha}', function (string $ficha) {
+/*Route::get('/seleccion-grupo/{ficha}', function (string $ficha) {
     $aspirante = Aspirante::where('ficha', $ficha)->first();
     $horarios  = Horario::with('grupos')->where('periodo', date('Y'))->orderBy('hora_inicio')->get();
 
@@ -69,7 +69,22 @@ Route::get('/seleccion-grupo/{ficha}', function (string $ficha) {
     $turnos = $turnos->filter();
 
     return view('seleccion-grupo', compact('aspirante', 'turnos'));
-})->name('seleccion-grupo');
+})->name('seleccion-grupo');*/
+
+Route::get('/seleccion-turno/{ficha}', function (string $ficha) {
+    $aspirante = Aspirante::where('ficha', $ficha)->first();
+    $horarios  = Horario::with('grupos')->where('periodo', date('Y'))->orderBy('hora_inicio')->get();
+
+    # Get the first group that has available space for every horario if any
+    $turnos = $horarios->map(function ($horario) {
+        return $horario->availableGroups()->first();
+    });
+
+    # Remove null values from the collection
+    $turnos = $turnos->filter();
+
+    return view('seleccion-grupo', compact('aspirante', 'turnos'));
+})->name('seleccion-turno');
 
 Route::get('/confirmar-turno/{ficha}/{horario}', function (string $ficha, Horario $horario) {
     $aspirante = Aspirante::where('ficha', $ficha)->first();
@@ -80,7 +95,7 @@ Route::get('/confirmar-turno/{ficha}/{horario}', function (string $ficha, Horari
         $confirmar = false;
     } else {
         # Get the first group that has available space for the selected horario
-        $grupo = $horario->grupos->first(fn($grupo) => $grupo->cupo > $grupo->inscritos);
+        $grupo = $horario->availableGroups()->first();
 
         $aspirante->grupo()->associate($grupo);
         $confirmar = $aspirante->save();
