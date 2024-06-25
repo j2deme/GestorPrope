@@ -14,7 +14,7 @@ services:
       - db
     networks:
       - app-network
-  
+
   db:
     platform: linux/amd64
     image: mysql:lts
@@ -32,7 +32,7 @@ services:
     networks:
       - mysql-phpmyadmin
       - app-network
-  
+
   phpmyadmin:
     depends_on:
       - db
@@ -49,6 +49,7 @@ services:
 networks:
   mysql-phpmyadmin:
   app-network:
+
 
 volumes:
   dbdata:
