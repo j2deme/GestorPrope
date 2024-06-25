@@ -136,13 +136,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-Route::resource('aspirantes', AspiranteController::class);
-Route::get('/aspirantes-upload', [AspiranteController::class, 'uploadForm'])->name('aspirantes.upload');
-Route::post('/aspirantes-upload', [AspiranteController::class, 'upload'])->name('aspirantes.upload.post');
-Route::resource('horarios', HorarioController::class);
-Route::resource('grupos', GrupoController::class);
-Route::delete('/grupos/{grupo}/remove/{aspirante}', [GrupoController::class, 'remove'])->name('grupos.remove');
+    Route::resource('aspirantes', AspiranteController::class);
+    Route::get('/aspirantes-upload', [AspiranteController::class, 'uploadForm'])->name('aspirantes.upload');
+    Route::post('/aspirantes-upload', [AspiranteController::class, 'upload'])->name('aspirantes.upload.post');
+    Route::resource('horarios', HorarioController::class);
+    Route::resource('grupos', GrupoController::class);
+    Route::delete('/grupos/{grupo}/remove/{aspirante}', [GrupoController::class, 'remove'])->name('grupos.remove');
+});
 
 require __DIR__ . '/auth.php';
