@@ -46,6 +46,10 @@
                       <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
                         Horario</th>
+                      <th scope="col"
+                        class="px-3 py-3 text-xs font-semibold tracking-wide text-center text-gray-500 uppercase">
+                        Estatus
+                      </th>
                       <th scope="col" class="px-3 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase">
                         <div class="flex items-center justify-center w-full">
                           <x-heroicon-o-cog-6-tooth class="w-5 h-5 m-2" />
@@ -69,6 +73,15 @@
                         }} - {{
                         str_pad($grupo->horario->hora_fin, 2, '0', STR_PAD_LEFT)
                         }}
+                      </td>
+                      <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
+                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                          <div
+                            class="{{ ($grupo->inscritos == $grupo->cupo) ? 'bg-green-500' : 'bg-blue-600' }} text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                            style="width: {{ ($grupo->inscritos == 0) ? '0' : ($grupo->inscritos / $grupo->cupo) * 100 }}%">
+                            {{ ($grupo->inscritos == 0) ? '0' : round(($grupo->inscritos / $grupo->cupo) * 100) }}%
+                          </div>
+                        </div>
                       </td>
                       <td class="flex items-center py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap">
                         <form action="{{ route('grupos.destroy', $grupo->id) }}" method="POST"
