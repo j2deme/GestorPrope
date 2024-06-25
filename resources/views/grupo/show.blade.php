@@ -91,7 +91,7 @@
                         </tr>
                       </thead>
                       <tbody class="bg-white divide-y divide-gray-300">
-                        @foreach ($grupo->aspirantes as $aspirante)
+                        @foreach ($aspirantes as $aspirante)
                         <tr>
                           <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-center text-gray-900">{{ $aspirante->ficha }}</div>
