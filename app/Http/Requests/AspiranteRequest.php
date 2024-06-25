@@ -22,12 +22,14 @@ class AspiranteRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'ficha' => 'required|string',
-			'nombre' => 'required|string',
-			'curp' => 'required|string',
-			'carrera' => 'required|string',
-			'evaluado' => 'required',
-			'periodo' => 'required',
+            'ficha' => 'required|string',
+            'nombre' => 'required|string',
+            'curp' => 'required|string',
+            'carrera' => 'required|string',
+            'evaluado' => 'required',
+            'periodo' => 'required',
+            'fecha_acceso' => 'date',
+            'puntaje' => 'numeric',
         ];
     }
 }
