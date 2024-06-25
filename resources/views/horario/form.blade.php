@@ -30,10 +30,11 @@
         <x-input-error class="mt-2" :messages="$errors->get('hora_fin')" />
     </div>
     <div>
-        <x-input-label for="descripcion" :value="__('Descripcion')" />
-        <x-buk-textarea id="descripcion" name="descripcion"
+        <x-input-label for="descripcion" :value="__('Días')" />
+        <x-text-input id="descripcion" name="descripcion"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            :value="old('descripcion', $horario?->descripcion)" autocomplete="descripcion" placeholder="Descripcion" />
+            :value="old('descripcion', $horario?->descripcion)" autocomplete="descripcion"
+            placeholder="Especifique las siglas para los días del horario" />
         <x-input-error class="mt-2" :messages="$errors->get('descripcion')" />
     </div>
     <div>

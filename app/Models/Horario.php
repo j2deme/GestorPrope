@@ -35,9 +35,19 @@ class Horario extends Model
         return $this->hasMany(\App\Models\Grupo::class, 'horario_id', 'id');
     }
 
-    public function getDiasAttribute()
+    # Virtual attribute "dias" as an alias for "descripcion"
+    public function dias(): Attribute
     {
-        return str_replace('-', ' - ', $this->descripcion);
+        return new Attribute(
+            get: fn($value) => str_replace('-', ' - ', str_replace(' ', '', $this->descripcion)),
+        );
+    }
+
+    public function descripcion(): Attribute
+    {
+        return new Attribute(
+            set: fn($value) => trim($value),
+        );
     }
 
 }
