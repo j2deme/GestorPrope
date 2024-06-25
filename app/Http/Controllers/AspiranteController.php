@@ -125,7 +125,7 @@ class AspiranteController extends Controller
             $aspirante->curp             = $row[2];
             $aspirante->carrera          = $row[3];
             $aspirante->evaluado         = ($row[4] == 'SI');
-            $aspirante->puntaje          = $row[5];
+            $aspirante->puntaje          = $row[5] * 100;
             $aspirante->fecha_evaluacion = null;
             $aspirante->fecha_acceso     = $request->fecha;
             $aspirante->periodo          = date('Y');
