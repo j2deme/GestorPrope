@@ -53,7 +53,7 @@
       class="inline-flex items-center justify-center w-1/2 px-4 py-2 text-base font-medium text-white bg-red-800 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800 sm:text-sm">
       Cancelar
     </a>
-    <a href="{{ route('seleccion-grupo', ['ficha'=> $aspirante->ficha ]) }}"
+    <a href="{{ route('seleccion-turno', ['ficha'=> $aspirante->ficha ]) }}"
       class="inline-flex items-center justify-center w-1/2 px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-sky-800 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-800 sm:text-sm">
       Continuar
     </a>
