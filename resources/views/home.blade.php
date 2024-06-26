@@ -20,7 +20,7 @@
       <label for="ficha" class="block text-sm font-medium text-gray-700">
         Número de ficha
       </label>
-      <input type="text" name="ficha" id="ficha"
+      <input type="number" name="ficha" id="ficha"
         class="block w-full px-3 py-2 mt-1 text-gray-700 border rounded-md shadow-sm focus:ring-sky-800 focus:border-sky-800 sm:text-sm"
         placeholder="9999" required>
     </div>
