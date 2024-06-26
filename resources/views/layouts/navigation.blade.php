@@ -92,6 +92,16 @@
                 <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
+            <x-responsive-nav-link :href="route('aspirantes.index')">
+                Aspirantes
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('horarios.index')">
+                Horarios
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('grupos.index')">
+                Grupos
+            </x-responsive-nav-link>
+
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
