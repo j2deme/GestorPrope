@@ -1,5 +1,5 @@
 @php
-$carrera = Str::upper($carrera)
+$carrera = Str::upper(trim($carrera))
 @endphp
 
 @switch($carrera)
