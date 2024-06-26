@@ -14,6 +14,11 @@ services:
       - db
     networks:
       - app-network
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /var/www/html
 
   db:
     platform: linux/amd64
