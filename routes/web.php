@@ -140,6 +140,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('aspirantes', AspiranteController::class);
     Route::get('/aspirantes-upload', [AspiranteController::class, 'uploadForm'])->name('aspirantes.upload');
     Route::post('/aspirantes-upload', [AspiranteController::class, 'upload'])->name('aspirantes.upload.post');
+    Route::get('/aspirantes-download', [AspiranteController::class, 'download'])->name('aspirantes.download');
     Route::resource('horarios', HorarioController::class);
     Route::resource('grupos', GrupoController::class);
     Route::delete('/grupos/{grupo}/remove/{aspirante}', [GrupoController::class, 'remove'])->name('grupos.remove');

@@ -9,6 +9,7 @@ use App\Http\Requests\AspiranteRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\Http\Response;
 
 class AspiranteController extends Controller
 {
@@ -26,9 +27,20 @@ class AspiranteController extends Controller
             $filtrado = true;
         }
 
-        $aspirantes = $query->paginate();
+        $fecha_seleccionada = $request->input('fecha_acceso');
+        if ($fecha_seleccionada) {
+            $query->where('fecha_acceso', $fecha_seleccionada);
+            $filtrado = true;
+        }
 
-        return view('aspirante.index', compact('aspirantes', 'filtrado', 'ficha'))
+        $aspirantes = $query->orderBy('fecha_acceso')
+            ->orderBy('nombre');
+
+        $fechas_acceso = $aspirantes->pluck('fecha_acceso')->unique()->sort()->values();
+        $aspirantes    = $query->paginate();
+
+
+        return view('aspirante.index', compact('aspirantes', 'filtrado', 'ficha', 'fechas_acceso', 'fecha_seleccionada'))
             ->with('i', ($request->input('page', 1) - 1) * $aspirantes->perPage());
     }
 
@@ -135,5 +147,38 @@ class AspiranteController extends Controller
 
         return Redirect::route('aspirantes.index')
             ->with('success', 'Aspirantes subidos exitosamente.');
+    }
+
+    public function download(): Response
+    {
+        # Increase the memory limit to avoid memory exhausted errors
+        ini_set('memory_limit', '512M');
+        # Increase the maximum execution time to avoid timeout errors
+        ini_set('max_execution_time', 300);
+
+        $aspirantes = Aspirante::where('periodo', date('Y'))->orderBy('fecha_acceso')->get();
+
+        $csv = fopen('php://temp', 'r+');
+        fputcsv($csv, ['Ficha', 'Nombre', 'CURP', 'Carrera', 'Fecha de acceso', 'Fecha de seleccion', 'Grupo']);
+
+        foreach ($aspirantes as $aspirante) {
+            fputcsv($csv, [
+                $aspirante->ficha,
+                $aspirante->nombre,
+                $aspirante->curp,
+                $aspirante->carrera,
+                $aspirante->fecha_acceso,
+                $aspirante->fecha_seleccion,
+                optional($aspirante->grupo)->nombre,
+            ]);
+        }
+
+        rewind($csv);
+        $csv = stream_get_contents($csv);
+
+        return response($csv)
+            ->header('Content-Type', 'text/csv')
+            ->header('Encoding', 'UTF-8')
+            ->header('Content-Disposition', 'attachment; filename="aspirantes-' . date('Y') . '.csv"');
     }
 }
