@@ -31,8 +31,8 @@
             </a>
             @else
             <a href="{{ route('login') }}"
-                class="px-3 py-2 text-black transition rounded-md ring-1 ring-transparent hover:text-black/70 focus:outline-none focus-visible:ring-sky-800 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                {{ __('Log in') }}
+                class="px-3 py-2 text-gray-300 transition rounded-md ring-1 ring-transparent hover:text-black/70 focus:outline-none focus-visible:ring-sky-800 dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                <x-heroicon-c-key class="w-5 h-5" />
             </a>
             @endauth
         </nav>
