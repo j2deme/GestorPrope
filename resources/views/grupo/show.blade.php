@@ -115,6 +115,7 @@
                                   onclick="event.preventDefault(); confirm('¿Estás seguro de continuar?') ? this.closest('form').submit() : false;">
                                   <x-heroicon-o-user-minus class="w-5 h-5" />
                                 </button>
+                              </form>
                             </div>
                           </td>
                         </tr>
