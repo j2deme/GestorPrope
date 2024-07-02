@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aspirante;
+use App\Models\Grupo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\AspiranteRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Http\Response;
@@ -81,8 +83,11 @@ class AspiranteController extends Controller
     public function edit($id): View
     {
         $aspirante = Aspirante::find($id);
+        $grupos    = Grupo::where('periodo', date('Y'))
+            ->orderBy('created_at')
+            ->get();
 
-        return view('aspirante.edit', compact('aspirante'));
+        return view('aspirante.edit', compact('aspirante', 'grupos'));
     }
 
     /**
@@ -90,6 +95,58 @@ class AspiranteController extends Controller
      */
     public function update(AspiranteRequest $request, Aspirante $aspirante): RedirectResponse
     {
+        $grupo = Grupo::find($request->grupo_id);
+
+        if ($aspirante->grupo_id != $request->grupo_id) {
+            # 1. El aspirante no tiene grupo asignado
+            if (is_null($aspirante->grupo_id)) {
+                DB::beginTransaction();
+
+                try {
+                    $aspirante->grupo()->associate($grupo);
+                    $aspirante->fecha_seleccion = now();
+                    $aspirante->save();
+
+                    $grupo->inscritos++;
+                    if ($grupo->cupo < $grupo->inscritos) {
+                        $grupo->cupo++;
+                    }
+                    $grupo->save();
+
+                    DB::commit();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+            } else {
+                # 2. El aspirante ya tiene grupo asignado
+                DB::beginTransaction();
+
+                try {
+                    $grupo_actual = $aspirante->grupo;
+                    $grupo_actual->inscritos--;
+                    $grupo_actual->save();
+                    $aspirante->grupo()->disassociate();
+
+                    $aspirante->grupo()->associate($grupo);
+                    $aspirante->fecha_seleccion = now();
+                    $aspirante->save();
+
+                    $grupo->inscritos++;
+                    if ($grupo->cupo < $grupo->inscritos) {
+                        $grupo->cupo++;
+                    }
+                    $grupo->save();
+
+                    DB::commit();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+            }
+        }
+
+        // Update the aspirante
         $aspirante->update($request->validated());
 
         return Redirect::route('aspirantes.index')

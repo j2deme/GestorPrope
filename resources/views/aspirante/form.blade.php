@@ -66,6 +66,21 @@
                 autocomplete="fecha_acceso" />
             <x-input-error class="mt-2" :messages="$errors->get('fecha_acceso')" />
         </div>
+        @if ($aspirante->id)
+        <div>
+            <x-input-label for="grupo_id" :value="__('Grupo')" />
+            <select id="grupo_id" name="grupo_id"
+                class="block w-full mt-1 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <option value="">Selecciona un grupo</option>
+                @foreach ($grupos as $grupo)
+                <option value="{{ $grupo->id }}" {{ old('grupo_id', $aspirante?->grupo_id) == $grupo->id ? 'selected' :
+                    '' }}>
+                    {{ $grupo->nombre }}</option>
+                @endforeach
+            </select>
+            <x-input-error class="mt-2" :messages="$errors->get('grupo_id')" />
+        </div>
+        @endif
     </div>
     <div>
         <!-- Hidden input for periodo -->
