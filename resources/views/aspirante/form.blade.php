@@ -75,7 +75,7 @@
                 @foreach ($grupos as $grupo)
                 <option value="{{ $grupo->id }}" {{ old('grupo_id', $aspirante?->grupo_id) == $grupo->id ? 'selected' :
                     '' }}>
-                    {{ $grupo->nombre }}</option>
+                    {{ $grupo->nombre }} ({{ $grupo->horario->display }})</option>
                 @endforeach
             </select>
             <x-input-error class="mt-2" :messages="$errors->get('grupo_id')" />

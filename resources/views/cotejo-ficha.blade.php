@@ -46,9 +46,7 @@
             <div class="text-sm text-center text-gray-900">{{ $grupo?->aula }}</div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
-            <div class="text-sm text-center text-gray-900">{{ str_pad($grupo?->horario->hora_inicio, 2, '0',
-              STR_PAD_LEFT) }} - {{
-              str_pad($grupo?->horario->hora_fin, 2, '0', STR_PAD_LEFT) }}</div>
+            <div class="text-sm text-center text-gray-900">{{ $grupo?->horario->display }}</div>
           </td>
         </tr>
       </tbody>

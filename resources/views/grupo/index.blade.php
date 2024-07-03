@@ -69,11 +69,7 @@
                       </td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{ $grupo->aula }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">{{
-                        str_pad($grupo->horario->hora_inicio, 2, '0', STR_PAD_LEFT)
-                        }} - {{
-                        str_pad($grupo->horario->hora_fin, 2, '0', STR_PAD_LEFT)
-                        }}
-                      </td>
+                        $grupo->horario->display }}</td>
                       <td class="px-3 py-4 text-sm text-center text-gray-500 whitespace-nowrap">
                         <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
                           <div
